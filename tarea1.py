@@ -21,34 +21,37 @@ print(x_knnImputed.isna().sum())
 
 fig, axs = plt.subplots(2)
 fig.suptitle("AGE")
-axs[0].boxplot(x["age"])
-axs[1].hist(x["age"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
+axs[0].boxplot(x_knnImputed["age"])
+axs[1].hist(x_knnImputed["age"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
 
 fig2, axs2 = plt.subplots(2)
 fig2.suptitle("Hypertension")
-axs2[0].boxplot(x["hypertension"])
-axs2[1].hist(x["hypertension"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
+axs2[0].boxplot(x_knnImputed["hypertension"])
+axs2[1].hist(x_knnImputed["hypertension"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
 
 fig3, axs3 = plt.subplots(2)
 fig3.suptitle("heart_disease")
-axs3[0].boxplot(x["heart_disease"])
-axs3[1].hist(x["heart_disease"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
+axs3[0].boxplot(x_knnImputed["heart_disease"])
+axs3[1].hist(x_knnImputed["heart_disease"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
 
 fig4, axs4 = plt.subplots(2)
 fig4.suptitle("avg_glucose_level")
-axs4[0].boxplot(x["avg_glucose_level"])
-axs4[1].hist(x["avg_glucose_level"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
+axs4[0].boxplot(x_knnImputed["avg_glucose_level"])
+axs4[1].hist(x_knnImputed["avg_glucose_level"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
 
 fig5, axs5 = plt.subplots(2)
 fig5.suptitle("bmi")
-axs5[0].boxplot(x["bmi"])
-axs5[1].hist(x["bmi"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
+axs5[0].boxplot(x_knnImputed["bmi"])
+axs5[1].hist(x_knnImputed["bmi"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
 
 fig6 = plt.figure()
-plt.pcolor(x)
+plt.pcolor(x_knnImputed)
 plt.title("heatMap")
 
 plt.show()
+
+measuresOfCentralTendency = x_knnImputed.describe()
+print(f"measuresOfCentralTendency: \n {measuresOfCentralTendency}")
 
 """
         1. ¿Hay alguna variable que no aporta información?
