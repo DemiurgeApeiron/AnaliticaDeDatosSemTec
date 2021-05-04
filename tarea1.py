@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # import tensorflow as tf
 from sklearn.impute import KNNImputer
@@ -8,8 +9,8 @@ df = pd.read_csv("healthcare-dataset-stroke-data.csv")
 x = df.iloc[:, [2, 3, 4, 8, 9]]
 y = df.iloc[:, [11]]
 print(df.head(5))
-print(df.describe())
 print(df.info(5))
+print(df.describe())
 print(df.shape)
 print(f"y: {y.head(5)}")
 print(f"x: {x.head(5)}")
@@ -18,6 +19,7 @@ imputer = KNNImputer(n_neighbors=5)
 x_knnImputed = pd.DataFrame(imputer.fit_transform(x), columns=x.columns)
 print(x_knnImputed.head(5))
 print(x_knnImputed.isna().sum())
+
 
 fig, axs = plt.subplots(2)
 fig.suptitle("AGE")
@@ -45,13 +47,25 @@ axs5[0].boxplot(x_knnImputed["bmi"])
 axs5[1].hist(x_knnImputed["bmi"], bins=range(0, 90, 5), color="#ff1c1c1c", ec="yellow")
 
 fig6 = plt.figure()
-plt.pcolor(x_knnImputed)
 plt.title("heatMap")
+sns.heatmap(x_knnImputed.head(20), cmap="RdYlGn", linewidths=0.30, annot=True)
 
 plt.show()
 
 measuresOfCentralTendency = x_knnImputed.describe()
 print(f"measuresOfCentralTendency: \n {measuresOfCentralTendency}")
+
+
+print(f"medina de AGE: {x_knnImputed['age'].median()}")
+print(f"moda de AGE: {x_knnImputed['age'].mode()}")
+print(f"medina de Hypertension: {x_knnImputed['hypertension'].median()}")
+print(f"moda de Hypertension: {x_knnImputed['hypertension'].mode()}")
+print(f"medina de heart_disease: {x_knnImputed['heart_disease'].median()}")
+print(f"moda de heart_disease: {x_knnImputed['heart_disease'].mode()}")
+print(f"medina de avg_glucose_level: {x_knnImputed['avg_glucose_level'].median()}")
+print(f"moda de avg_glucose_level: {x_knnImputed['avg_glucose_level'].mode()}")
+print(f"medina de bmi: {x_knnImputed['bmi'].median()}")
+print(f"moda de bmi: {x_knnImputed['bmi'].mode()}")
 
 """
         1. ¿Hay alguna variable que no aporta información?
